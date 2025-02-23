@@ -1,0 +1,112 @@
+<div class="title">
+    <h3>My Kanban-board</h3>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let board of boards">
+        <div class="card" style="width: 25rem; margin: 1rem;">
+          <div class="card-body">
+            <span style="display: flex; justify-content: space-between;">
+              <h5 class="card-title" style="text-align: left; font-weight: bold">Board: {{ board.name }}</h5>
+              <div class="trash" (click)="deleteBoard(board.id)"><i class="bi bi-trash3-fill"></i></div>
+            </span>
+            <hr/>
+            <p class="card-text">Deadline | กำหนดส่ง: {{ board.date }}</p>
+            <p class="card-text">สมาชิกในงาน: {{ board.stock }}</p>
+            <span style="display: flex; justify-content: space-between; align-items: center;">
+              
+              <div class="btn" id="btn-task" [routerLink]="['/task']" [queryParams]="{ boardId: board.id }" style="order: 1; background-color: #141E46; color: #f7f7f7; font-size: 15px">View task</div>
+              <div class="btn-addpeople"><i class="bi bi-person-fill-add" (click)="openaddpeopleModal(board)"></i></div>
+              <button class="edit" type="button" data-toggle="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+               aria-hidden="true" data-target="#exampleModal" style="order: 2;" (click)="openEditBoardModal(board)">Edit</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="add-btn">
+    <button type="button" data-toggle="modal" tabindex="-1" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true" data-target="#exampleModal" 
+    (click)="openaddboardModal()">
+      <div class="plus-icon"><i class="bi bi-plus-circle" ></i></div>
+    </button>
+  </div>
+  
+
+  <!-- Backdrop เมื่อ Modal เปิด -->
+  <div class="modal-backdrop fade show" *ngIf="isBoardModalOpen" (click)="closeaddboardModal()"></div>
+
+<!-- Modal Add Board -->
+<div class="modal fade show" [ngClass]="{'d-block': isBoardModalOpen, 'd-none': !isBoardModalOpen}">
+<div class="modal" *ngIf="isBoardModalOpen" style="display:block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">เพิ่ม Board ใหม่</h5>
+        <button type="button" class="btn-close" (click)="closeaddboardModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form #addboardForm="ngForm" (ngSubmit)="onAddboardSubmit()">
+          <div class="form-group">
+            <label for="BoardName">Board Name :</label>
+            <input type="text" class="form-control" id="BoardName" [(ngModel)]="newBoard.name" name="BoardName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="Boarddate">Deadline | กำหนดส่ง :</label>
+            <input type="date" class="form-control" id="Boarddate" [(ngModel)]="newBoard.date" name="Boarddate" required />
+          </div>
+
+          <div class="form-group">
+            <label for="BoardStock">สมาชิกในงาน :</label>
+            <input type="number" class="form-control" id="BoardStock" [(ngModel)]="newBoard.stock" name="BoardStock" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-3" [disabled]="addboardForm.invalid">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Edit Board Modal -->
+<!-- Edit Board Modal -->
+<div class="modal-backdrop" *ngIf="isEditBoardModalOpen" (click)="closeEditBoardModal()"></div>
+
+<div class="modal fade show" [ngClass]="{'d-block': isEditBoardModalOpen, 'd-none': !isEditBoardModalOpen}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Board</h5>
+        <button type="button" class="btn-close" (click)="closeEditBoardModal()"></button>
+        
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveBoardEdit()">
+          <div class="form-group">
+            <label>Board Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="editedBoard.name" name="editBoardName" required />
+          </div>
+          <div class="form-group">
+            <label>Deadline:</label>
+            <input type="date" class="form-control" [(ngModel)]="editedBoard.date" name="editBoardDate" required />
+          </div>
+          <div class="form-group">
+            <label>Members:</label>
+            <input type="number" class="form-control" [(ngModel)]="editedBoard.stock" name="editBoardStock" required />
+          </div>
+          <button type="submit" class="btn btn-success mt-3">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
