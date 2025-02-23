@@ -1,37 +1,60 @@
 .register-container {
-    width: 300px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-  }
+  width: 450px;
+  margin: 150px auto;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #141E46;
+  color: #F3FEB8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.register-container h2 {
+  text-align: center;
+}
+
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* เพิ่มระยะห่างระหว่างแต่ละฟิลด์ */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: aliceblue;
+  border-radius: 4px;
+  color: #141E46;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: left;
+}

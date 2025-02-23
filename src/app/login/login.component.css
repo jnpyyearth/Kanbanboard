@@ -5,10 +5,11 @@
     height: auto;
     margin: 0 auto;
     padding: 30px;
-    background-color: #f9f9f9;
+    background-color: #141E46;
+    color: #F3FEB8;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 10rem;
+    margin-top: 12rem;
   }
   
  
@@ -17,7 +18,7 @@
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: #F3FEB8;
   }
   
  
@@ -29,7 +30,7 @@
   .form-group label {
     font-size: 14px;
     font-weight: bold;
-    color: #555;
+    color: #F3FEB8;
     display: block;
     margin-bottom: 8px;
   }

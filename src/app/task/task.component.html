@@ -32,8 +32,8 @@
                     </span>
                   </h5>
                   <hr />
-                  <p class="card-text">รายละเอียดงาน : {{ task.description }}</p>
-                  <p class="card-text">ผู้รับผิดชอบ : {{ task.people }}</p>
+                  <p class="card-text">Details: {{ task.description }}</p>
+                  <p class="card-text">Assigned to: {{ task.people }}</p>
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                       <button class="edit" type="button" data-toggle="modal"(click)="openEditTaskModal(task)" style="font-weight: bold;">Edit</button>
                       <i class="bi bi-trash3-fill" (click)="deleteTask(task.id)"></i>

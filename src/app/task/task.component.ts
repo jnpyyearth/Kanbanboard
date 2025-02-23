@@ -30,6 +30,8 @@ export class TaskComponent implements OnInit {
   editedTask: any = { id: null, name: '', description: '', people: '', status: 'pending', courseId: null };
   isInviteModalOpen: boolean = false;
   invitedFriend: string = '';
+  draggedColumnId: number | null = null;
+  draggedTaskIndex: number | null = null;
   
   constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
   ngOnInit(): void {
@@ -175,6 +177,9 @@ export class TaskComponent implements OnInit {
   onDragStart(event: DragEvent, task: any) {
     this.draggedTask = JSON.parse(JSON.stringify(task));
   }
+
+  
+
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
