@@ -11,9 +11,9 @@ import { ChangeDetectorRef } from '@angular/core';
 export class BoardComponent implements OnInit {
   inviteEmail: any;
   isInviteModalOpen: boolean | undefined;
-openaddpeopleModal(_t7: any) {
-throw new Error('Method not implemented.');
-}
+  openaddpeopleModal(_t7: any) {
+    throw new Error('Method not implemented.');
+  }
   isBoardModalOpen: boolean = false;
   boards: any[] = [];
   columns: any[] = [];
@@ -36,38 +36,38 @@ throw new Error('Method not implemented.');
 
   // เปิด Modal Add Board
   openaddboardModal() {
-    console.log("Opening Board Modal");
+    console.log('Opening Board Modal');
     this.isBoardModalOpen = true;
   }
 
   // ปิด Modal Add Board
   closeaddboardModal() {
-    console.log("Closing Board Modal");
+    console.log('Closing Board Modal');
     this.isBoardModalOpen = false;
   }
 
   // เพิ่ม Board ใหม่
   onAddboardSubmit() {
-    console.log("Submitting Board:", this.newBoard);
-    
+    console.log('Submitting Board:', this.newBoard);
+
     if (this.newBoard.name && this.newBoard.date && this.newBoard.stock > 0) {
       const newBoardData = {
         id: this.boards.length + 1,
         name: this.newBoard.name,
         date: this.newBoard.date,
-        stock: this.newBoard.stock
+        stock: this.newBoard.stock,
       };
 
       this.boards.push(newBoardData);
       localStorage.setItem('boards', JSON.stringify(this.boards));
 
-      console.log("Board Added:", newBoardData);
+      console.log('Board Added:', newBoardData);
 
       // รีเซ็ตค่า
       this.newBoard = { name: '', date: '', stock: 0 };
       this.closeaddboardModal();
     } else {
-      console.error("Form is incomplete.");
+      console.error('Form is incomplete.');
     }
   }
 
@@ -81,14 +81,13 @@ throw new Error('Method not implemented.');
         { id: 1, name: 'โปรเจค A', date: '2023-02-23', stock: 10 },
         { id: 2, name: 'โปรเจค B', date: '2023-02-24', stock: 5 },
         { id: 3, name: 'โปรเจค C', date: '2023-02-25', stock: 8 },
-        { id: 4, name: 'โปรเจค X', date: '2023-02-26', stock: 12 }
+        { id: 4, name: 'โปรเจค X', date: '2023-02-26', stock: 12 },
       ];
       localStorage.setItem('boards', JSON.stringify(this.boards));
     }
   }
 
   // ลบ Board
-
 
   deleteBoard(boardId: number) {
     Swal.fire({
@@ -98,55 +97,58 @@ throw new Error('Method not implemented.');
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.boards = this.boards.filter(board => board.id !== boardId);
+        this.boards = this.boards.filter((board) => board.id !== boardId);
         localStorage.setItem('boards', JSON.stringify(this.boards));
         Swal.fire('ลบ Board แล้ว', '', 'success');
       }
     });
   }
 
-
   // กรอง Board
   filterBoards() {
     this.filteredBoards = {};
-    this.boards.forEach(board => {
-      this.filteredBoards[board.id] = this.boards.filter(task => task.courseId === board.id);
+    this.boards.forEach((board) => {
+      this.filteredBoards[board.id] = this.boards.filter(
+        (task) => task.courseId === board.id
+      );
     });
   }
 
   linkData() {
-    this.boards.forEach(board => {
-      board['columns'] = this.columns.filter(column => column.boardId === board.id)
-        .map(column => ({
+    this.boards.forEach((board) => {
+      board['columns'] = this.columns
+        .filter((column) => column.boardId === board.id)
+        .map((column) => ({
           ...column,
-          tasks: this.tasks.filter(task => task.courseId === column.id)
+          tasks: this.tasks.filter((task) => task.courseId === column.id),
         }));
     });
     console.log('Linked Data:', this.boards);
   }
 
-  
   openEditBoardModal(board: any) {
     this.isEditBoardModalOpen = true;
-    this.editedBoard = { ...board }; 
+    this.editedBoard = { ...board };
     this.cdr.detectChanges();
   }
   closeEditBoardModal() {
     this.isEditBoardModalOpen = false;
     this.editedBoard = { id: null, name: '', date: '', stock: 0 };
-    this.cdr.detectChanges(); 
+    this.cdr.detectChanges();
   }
   saveBoardEdit() {
     if (this.editedBoard.id !== null && this.editedBoard.name.trim() !== '') {
       let storedBoards = localStorage.getItem('boards');
       if (storedBoards) {
         this.boards = JSON.parse(storedBoards);
-        let boardIndex = this.boards.findIndex((b: any) => b.id === this.editedBoard.id);
+        let boardIndex = this.boards.findIndex(
+          (b: any) => b.id === this.editedBoard.id
+        );
 
         if (boardIndex !== -1) {
           this.boards[boardIndex] = { ...this.editedBoard };
           localStorage.setItem('boards', JSON.stringify(this.boards));
-          this.getMockupData(); 
+          this.getMockupData();
           this.closeEditBoardModal();
         }
       }
@@ -165,34 +167,35 @@ throw new Error('Method not implemented.');
     this.selectedBoard = null;
   }
 
-
   submitInvite() {
     if (!this.selectedBoard) {
-      console.error("No board selected for invite.");
+      console.error('No board selected for invite.');
       return;
     }
-    
-    this.selectedBoard.invitedPeople = this.selectedBoard.invitedPeople 
-      ? [...this.selectedBoard.invitedPeople, this.invitedFriend] 
+
+    this.selectedBoard.invitedPeople = this.selectedBoard.invitedPeople
+      ? [...this.selectedBoard.invitedPeople, this.invitedFriend]
       : [this.invitedFriend];
-    
+
     let storedBoards = localStorage.getItem('boards');
     if (storedBoards) {
       this.boards = JSON.parse(storedBoards);
-      let boardIndex = this.boards.findIndex(board => board.id === this.selectedBoard.id);
-      
+      let boardIndex = this.boards.findIndex(
+        (board) => board.id === this.selectedBoard.id
+      );
+
       if (boardIndex !== -1) {
         this.boards[boardIndex] = { ...this.selectedBoard };
         localStorage.setItem('boards', JSON.stringify(this.boards));
       }
     }
-    
+
     this.closeInviteModal();
   }
 
   onInviteSubmit() {
     if (!this.selectedBoard) {
-      console.error("No board selected for invite.");
+      console.error('No board selected for invite.');
       return;
     }
 
@@ -201,15 +204,17 @@ throw new Error('Method not implemented.');
       return;
     }
 
-    this.selectedBoard.invitedPeople = this.selectedBoard.invitedPeople 
-      ? [...this.selectedBoard.invitedPeople, this.inviteEmail] 
+    this.selectedBoard.invitedPeople = this.selectedBoard.invitedPeople
+      ? [...this.selectedBoard.invitedPeople, this.inviteEmail]
       : [this.inviteEmail];
 
     let storedBoards = localStorage.getItem('boards');
     if (storedBoards) {
       this.boards = JSON.parse(storedBoards);
-      let boardIndex = this.boards.findIndex(board => board.id === this.selectedBoard.id);
-      
+      let boardIndex = this.boards.findIndex(
+        (board) => board.id === this.selectedBoard.id
+      );
+
       if (boardIndex !== -1) {
         this.boards[boardIndex] = { ...this.selectedBoard };
         localStorage.setItem('boards', JSON.stringify(this.boards));
@@ -219,5 +224,4 @@ throw new Error('Method not implemented.');
     Swal.fire('Success', 'Invitation sent successfully!', 'success');
     this.closeInviteModal();
   }
-
 }

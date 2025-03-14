@@ -26,6 +26,11 @@ export class LoginComponent implements OnInit {
     });
   }
   onSubmit(): void {
+    
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     const { username, password } = this.loginForm.value;
     let users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find((user: any) => user.username === username && user.password === password);
@@ -39,4 +44,5 @@ export class LoginComponent implements OnInit {
       this.loginError = 'Invalid username or password';
     }
   }
+
 }

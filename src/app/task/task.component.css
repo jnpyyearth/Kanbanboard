@@ -72,7 +72,7 @@
 }
 
 .btn-addtask {
-    background-color: #007bff; 
+    background-color: #141E46; 
     color: white; 
     border:#141E46; 
     border-radius: 10px; 
@@ -193,4 +193,8 @@
 
   .card-title .btn-addpeople {
     cursor: pointer;
+  }
+
+  #trash :hover{
+    color: red;
   }

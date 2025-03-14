@@ -5,8 +5,10 @@
 <!-- Task Board -->
 <div class="row">
   <div class="col-md-4" *ngFor="let column of columns"
+
     (dragover)="onDragOver($event)" 
     (drop)="onDrop($event, column.id)">
+    
       <div class="card" style="width: 25rem; margin: 2rem;">
 
           <div class="card-header">
@@ -36,14 +38,14 @@
                   <p class="card-text">Assigned to: {{ task.people }}</p>
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                       <button class="edit" type="button" data-toggle="modal"(click)="openEditTaskModal(task)" style="font-weight: bold;">Edit</button>
-                      <i class="bi bi-trash3-fill" (click)="deleteTask(task.id)"></i>
+                      <i class="bi bi-trash3-fill" id = "trash" (click)="deleteTask(task.id)"></i>
                   </div>
               </div>
           </div>
 
           <!-- Add Task Button -->
-          <button id="btn-addtask" style="padding: 5px 10px; font-size: 14px; margin-top: 1rem; 
-          background-color: #141E46; color: #f7f7f7 ; border-radius: 5px;" (click)="openaddTaskModal(column.id)">
+          <button class = "btn-addtask" id="btn-addtask" style="padding: 5px 10px; font-size: 14px; margin-top: 1rem; 
+          border-radius: 5px;" (click)="openaddTaskModal(column.id)">
               Add Task
           </button>
       </div>

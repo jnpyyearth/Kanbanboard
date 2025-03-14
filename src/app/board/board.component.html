@@ -46,7 +46,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">เพิ่ม Board ใหม่</h5>
-        <button type="button" class="btn-close" (click)="closeaddboardModal()"></button>
+        <button type="button" style="background-color: #141E46; color: #f7f7f7;"class="btn-close" (click)="closeaddboardModal()">
+          <div class="close-btn" style="margin-top: -4px;"><i class="bi bi-x-lg"></i></div>
+        </button>
       </div>
       <div class="modal-body">
         <form #addboardForm="ngForm" (ngSubmit)="onAddboardSubmit()">
@@ -85,7 +87,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Edit Board</h5>
-        <button type="button" class="btn-close" (click)="closeEditBoardModal()"></button>
+        <button type="button" style="background-color: #141E46; color: #f7f7f7;" class="btn-close"  (click)="closeEditBoardModal()">
+          <div class="close-btn" style="margin-top: -4px;"><i class="bi bi-x-lg"></i></div>
+        </button>
         
       </div>
       <div class="modal-body">

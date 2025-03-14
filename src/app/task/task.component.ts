@@ -27,7 +27,13 @@ export class TaskComponent implements OnInit {
   editedColumnId: number | null = null;
   editedColumnName: string = '';
   isEditTaskModalOpen: boolean = false;
-  editedTask: any = { id: null, name: '', description: '', people: '', status: 'pending', courseId: null };
+  
+  editedTask: any = { id: null, name: '', 
+                       description: '', 
+                       people: '', 
+                       status: 'pending', 
+                       courseId: null };
+
   isInviteModalOpen: boolean = false;
   invitedFriend: string = '';
   draggedColumnId: number | null = null;
@@ -173,13 +179,11 @@ export class TaskComponent implements OnInit {
     this.filterTasksByColumn();
   }
 
-  // ลากTaskางในColumnอื่นได้
+
+  // ลากTask วางในColumnอื่นได้
   onDragStart(event: DragEvent, task: any) {
     this.draggedTask = JSON.parse(JSON.stringify(task));
   }
-
-  
-
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
@@ -192,12 +196,12 @@ export class TaskComponent implements OnInit {
       this.tasks = this.tasks.map(task => 
         task.id === this.draggedTask.id ? { ...task, courseId: newColumnId } : task
       );
-
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
       this.filterTasksByColumn();
       this.draggedTask = null;
     }
   }
+
 
  editcolumn(columnId: number) {
 
@@ -274,10 +278,6 @@ saveTaskEdit() {
     }
   }
 }
-
-
-
-
 
 
 }
