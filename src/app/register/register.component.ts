@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    // ดึงข้อมูลผู้ใช้ที่มีอยู่จาก localStorage
+    // ดึงข้อมูลผู้ใช้ที่มีอยู่จาก localStorage แล้วให้เป็นข้อความ แล้วแปลง json เป็น array
     let users = JSON.parse(localStorage.getItem('users') || '[]');
 
     // ตรวจสอบว่าชื่อผู้ใช้ซ้ำหรือไม่

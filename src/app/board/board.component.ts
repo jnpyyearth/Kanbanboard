@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core'; //การตรวจสอบและอัปเดตค่า
 
 @Component({
   selector: 'app-board',
@@ -88,7 +88,6 @@ export class BoardComponent implements OnInit {
   }
 
   // ลบ Board
-
   deleteBoard(boardId: number) {
     Swal.fire({
       title: 'ต้องการลบ Board หรือไม่?',
@@ -114,6 +113,7 @@ export class BoardComponent implements OnInit {
     });
   }
 
+  // เชื่อมต่อข้อมูล
   linkData() {
     this.boards.forEach((board) => {
       board['columns'] = this.columns

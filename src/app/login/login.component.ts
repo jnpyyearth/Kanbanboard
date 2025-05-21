@@ -26,13 +26,13 @@ export class LoginComponent implements OnInit {
     });
   }
   onSubmit(): void {
-    
+
     if (this.loginForm.invalid) {
       return;
     }
 
-    const { username, password } = this.loginForm.value;
-    let users = JSON.parse(localStorage.getItem('users') || '[]');
+    const { username, password } = this.loginForm.value; //ดึงค่า username และ password
+    let users = JSON.parse(localStorage.getItem('users') || '[]'); //ดึงข้อมูลuserจาก localStorageให้เป็นข้อความ แล้วแปลง json เป็น array
     const user = users.find((user: any) => user.username === username && user.password === password);
 
     if (user) {
